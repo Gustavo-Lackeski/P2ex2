@@ -8,8 +8,16 @@ import java.io.IOException;
 import java.util.Scanner;
 
 public class VulnerableClass {
+	private static void check(String s){
+		if (!s.matches("^[a-zA-Z0-9]*" + "\\.txt$"))
+			throw new IllegalArgumentException();
+	}
+	
 	public void vulnerableMethod(String FILENAME){
-		while (true) {
+		int i = 0;
+		check(FILENAME);
+		//removendo loop infinito por causa do denial of service
+		while (i<5) {
 		    Scanner console = new Scanner(System.in);
 		    System.out.print("Digite a operacao desejada para realizar no arquivo <R para ler um arquivo, "
 		    		+ "W para escrever em um arquivo>? ");
@@ -32,6 +40,8 @@ public class VulnerableClass {
 					while ((sCurrentLine = br.readLine()) != null) {
 						System.out.println(sCurrentLine);
 					}
+					br.close();
+					fr.close();
 
 				} catch (IOException e) {
 
@@ -41,19 +51,26 @@ public class VulnerableClass {
 			}
 			
 			else {
-				  BufferedWriter buffWrite;
-				  
-				  try {
-					buffWrite = new BufferedWriter(new FileWriter(FILENAME));
-					String linha = "";
-					System.out.println("Escreva algo: ");
-				    linha = console.nextLine();
-				    buffWrite.append(linha + "\n");
-				     
-				} catch (IOException e) {
-					e.printStackTrace();
-				} 
+				if (opr.equals("W")){
+					  BufferedWriter buffWrite;
+					  
+					  try {
+						buffWrite = new BufferedWriter(new FileWriter(FILENAME));
+						String linha = "";
+						System.out.println("Escreva algo: ");
+					    linha = console.nextLine();
+					    buffWrite.append(linha + "\n");
+					    buffWrite.close();
+					     
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+				}
+				else{
+					System.out.println("Escreve W ou R");
+				}
 			}
+		    i++;
 		}
 	}
 }
