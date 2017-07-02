@@ -17,7 +17,7 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="src" output="target/test-classes" path="Users/G1511NEW/workspace/P2EXE2/src/test/java">
+	<classpathentry kind="src" output="Users/G1511NEW/workspace/P2EXE2/target/test-classes" path="Users/G1511NEW/workspace/P2EXE2/src/test/java">
 		<attributes>
 			<attribute name="optional" value="true"/>
 			<attribute name="maven.pomderived" value="true"/>

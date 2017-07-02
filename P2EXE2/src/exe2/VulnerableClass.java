@@ -16,9 +16,9 @@ public class VulnerableClass {
 	public void vulnerableMethod(String FILENAME){
 		int i = 0;
 		check(FILENAME);
+    Scanner console = new Scanner(System.in);
 		//removendo loop infinito por causa do denial of service
-		while (i<5) {
-		    Scanner console = new Scanner(System.in);
+		while (i<3) {
 		    System.out.print("Digite a operacao desejada para realizar no arquivo <R para ler um arquivo, "
 		    		+ "W para escrever em um arquivo>? ");
 			
